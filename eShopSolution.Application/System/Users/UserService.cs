@@ -37,7 +37,7 @@ namespace eShopSolution.Application.System.Users
         public async Task<ApiResult<string>> Authencate(LoginRequest request)
         {
             var user = await _userManager.FindByNameAsync(request.UserName);
-            if (user == null) return null; //throw new EShopException("Cannot find Username");
+            if (user == null) return new ApiErrorResult<string>("Username doesn't exist"); //throw new EShopException("Cannot find Username");
 
             var result = await _signInManager.PasswordSignInAsync(user, request.Password, request.RememberMe, true);
             if (!result.Succeeded)
@@ -61,7 +61,10 @@ namespace eShopSolution.Application.System.Users
                 claims,
                 expires: DateTime.Now.AddHours(3),
                 signingCredentials: creds);
-
+            if (token == null)
+            {
+                return new ApiErrorResult<string>("Username or Password incorrect");
+            }
             return new ApiSuccessResult<string>(new JwtSecurityTokenHandler().WriteToken(token));
         }
 
