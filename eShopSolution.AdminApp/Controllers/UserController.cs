@@ -22,7 +22,8 @@ namespace eShopSolution.AdminApp.Controllers
             _configuration = configuration;
         }
 
-        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 3)
+        //PAGING
+        public async Task<IActionResult> Index(string keyword, int pageIndex = 1, int pageSize = 10)
         {
             var request = new GetUserPagingRequest()
             {
@@ -34,6 +35,7 @@ namespace eShopSolution.AdminApp.Controllers
             return View(data.ResultObject);
         }
 
+        //DETAILS
         [HttpGet]
         public async Task<IActionResult> Details(Guid id)
         {
@@ -41,6 +43,7 @@ namespace eShopSolution.AdminApp.Controllers
             return View(result.ResultObject);
         }
 
+        //CREATE
         [HttpGet]
         public IActionResult Create()
         {
@@ -61,6 +64,7 @@ namespace eShopSolution.AdminApp.Controllers
             return View(request);
         }
 
+        //EDIT
         [HttpGet]
         public async Task<IActionResult> Edit(Guid id)
         {
@@ -96,11 +100,36 @@ namespace eShopSolution.AdminApp.Controllers
             return View(request);
         }
 
+        //LOGOUT
         [HttpPost]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index", "Login");
+        }
+
+        //DELETE
+        [HttpGet]
+        public IActionResult Delete(Guid id)
+        {
+            return View(new UserDeleteRequest()
+            {
+                Id = id,
+            });
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(UserDeleteRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            var result = await _userApiClient.Delete(request.Id);
+            if (result.IsSuccessed)
+                return RedirectToAction("Index");
+
+            ModelState.AddModelError("", result.Message);
+            return View(request);
         }
     }
 }

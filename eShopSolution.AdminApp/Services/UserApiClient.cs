@@ -26,7 +26,7 @@ namespace eShopSolution.AdminApp.Services
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<ApiResult<string>> Authenticate(LoginRequest request) 
+        public async Task<ApiResult<string>> Authenticate(LoginRequest request)
         {
             var json = JsonConvert.SerializeObject(request);
             var httpContent = new StringContent(json, Encoding.UTF8, "application/json");
@@ -40,6 +40,22 @@ namespace eShopSolution.AdminApp.Services
             }
 
             return JsonConvert.DeserializeObject<ApiErrorResult<string>>(await response.Content.ReadAsStringAsync());
+        }
+
+        public async Task<ApiResult<bool>> Delete(Guid id)
+        {
+            var client = _httpClientFactory.CreateClient();
+            var sessions = _httpContextAccessor.HttpContext.Session.GetString("Token");
+
+            client.BaseAddress = new Uri(_configuration["BaseAddress"]);
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", sessions);
+
+            var response = await client.DeleteAsync($"/api/users/{id}");
+
+            var body = await response.Content.ReadAsStringAsync();
+            if (response.IsSuccessStatusCode)
+                return JsonConvert.DeserializeObject<ApiSuccessResult<bool>>(body);
+            return JsonConvert.DeserializeObject<ApiErrorResult<bool>>(body);
         }
 
         public async Task<ApiResult<UserViewModel>> GetById(Guid id)
