@@ -13,6 +13,8 @@ namespace eShopSolution.AdminApp.Services
 
         Task<ApiResult<bool>> RegisterUser(RegisterRequest register);
 
+        Task<ApiResult<bool>> RoleAssign(Guid id, RoleAssignRequest request);
+
         Task<ApiResult<bool>> UpdateUser(Guid id, UserUpdateRequest register);
 
         Task<ApiResult<UserViewModel>> GetById(Guid id);
