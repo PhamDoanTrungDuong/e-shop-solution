@@ -212,7 +212,7 @@ namespace eShopSolution.Application.Catalog.Products
 
         public async Task<PagedResult<ProductVm>> GetAllPaging(GetManageProductPagingRequest request)
         {
-            //1.Select Join
+            //1. Select join
             var query = from p in _context.Products
                         join pt in _context.ProductTranslations on p.Id equals pt.ProductId
                         join pic in _context.ProductInCategories on p.Id equals pic.ProductId into ppic
@@ -221,7 +221,6 @@ namespace eShopSolution.Application.Catalog.Products
                         from c in picc.DefaultIfEmpty()
                         where pt.LanguageId == request.LanguageId
                         select new { p, pt, pic };
-
             //2. filter
             if (!string.IsNullOrEmpty(request.Keyword))
                 query = query.Where(x => x.pt.Name.Contains(request.Keyword));
@@ -231,7 +230,7 @@ namespace eShopSolution.Application.Catalog.Products
                 query = query.Where(p => p.pic.CategoryId == request.CategoryId);
             }
 
-            //3.Paging
+            //3. Paging
             int totalRow = await query.CountAsync();
 
             var data = await query.Skip((request.PageIndex - 1) * request.PageSize)
@@ -257,8 +256,8 @@ namespace eShopSolution.Application.Catalog.Products
             var pagedResult = new PagedResult<ProductVm>()
             {
                 TotalRecords = totalRow,
-                PageIndex = request.PageIndex,
                 PageSize = request.PageSize,
+                PageIndex = request.PageIndex,
                 Items = data
             };
             return pagedResult;

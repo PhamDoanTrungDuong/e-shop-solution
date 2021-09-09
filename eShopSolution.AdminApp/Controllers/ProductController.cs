@@ -1,7 +1,5 @@
 ﻿using eShopSolution.ApiIntegration;
 
-using eShopSolution.ApiIntegration;
-
 using eShopSolution.Utilities.Constants;
 using eShopSolution.ViewModels.Catalog.Products;
 using eShopSolution.ViewModels.Common;
@@ -130,6 +128,43 @@ namespace eShopSolution.AdminApp.Controllers
                 });
             }
             return categoryAssignRequest;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var languageId = HttpContext.Session.GetString(SystemConstants.AppSettings.DefaultLanguageId);
+
+            var product = await _productApiClient.GetById(id, languageId);
+            var editVm = new ProductUpdateRequest()
+            {
+                Id = product.Id,
+                Description = product.Description,
+                Details = product.Details,
+                Name = product.Name,
+                SeoAlias = product.SeoAlias,
+                SeoDescription = product.SeoDescription,
+                SeoTitle = product.SeoTitle
+            };
+            return View(editVm);
+        }
+
+        [HttpPost]
+        [Consumes("multipart/form-data")]
+        public async Task<IActionResult> Edit([FromForm] ProductUpdateRequest request)
+        {
+            if (!ModelState.IsValid)
+                return View(request);
+
+            var result = await _productApiClient.UpdateProduct(request);
+            if (result)
+            {
+                TempData["result"] = "Update product successfull";
+                return RedirectToAction("Index");
+            }
+
+            ModelState.AddModelError("", "Update product fail");
+            return View(request);
         }
     }
 }
