@@ -121,6 +121,10 @@
     <value>Thêm vào</value>
     <comment>/Home/Index</comment>
   </data>
+  <data name="available products" xml:space="preserve">
+    <value>sản phẩm có sẵn</value>
+    <comment>/Product/Category</comment>
+  </data>
   <data name="categoryUrl" xml:space="preserve">
     <value>danh-muc</value>
     <comment>_Layouts/Components</comment>
@@ -132,6 +136,10 @@
   <data name="Delivery" xml:space="preserve">
     <value>Giao hàng</value>
     <comment>_Layouts</comment>
+  </data>
+  <data name="Description Application" xml:space="preserve">
+    <value>Mô tả ứng dụng</value>
+    <comment>/Home/Index</comment>
   </data>
   <data name="English" xml:space="preserve">
     <value>Tiếng Anh</value>
@@ -149,8 +157,16 @@
     <value>Đăng nhập</value>
     <comment>_Layouts</comment>
   </data>
+  <data name="New | Available" xml:space="preserve">
+    <value>Mới | Có sẵn</value>
+    <comment>/Home/Index</comment>
+  </data>
   <data name="productUrl" xml:space="preserve">
     <value>san-pham</value>
+    <comment>/Home/Index</comment>
+  </data>
+  <data name="Sort By" xml:space="preserve">
+    <value>Sắp xếp theo</value>
     <comment>/Home/Index</comment>
   </data>
   <data name="Specials Offer" xml:space="preserve">
@@ -160,5 +176,13 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Tiếng Việt</value>
     <comment>_Layouts</comment>
+  </data>
+  <data name="VIEW" xml:space="preserve">
+    <value>VIEW</value>
+    <comment>/Home/Index</comment>
+  </data>
+  <data name="View Details" xml:space="preserve">
+    <value>Xem chi tiết</value>
+    <comment>/Home/Index</comment>
   </data>
 </root>

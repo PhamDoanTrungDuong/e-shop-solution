@@ -121,6 +121,10 @@
     <value>Add to</value>
     <comment>/Home/Index</comment>
   </data>
+  <data name="available products" xml:space="preserve">
+    <value>available products</value>
+    <comment>/Product/Category</comment>
+  </data>
   <data name="categoryUrl" xml:space="preserve">
     <value>categories</value>
     <comment>_Layouts/Components</comment>
@@ -132,6 +136,10 @@
   <data name="Delivery" xml:space="preserve">
     <value>Delivery</value>
     <comment>_Layouts</comment>
+  </data>
+  <data name="Description Application" xml:space="preserve">
+    <value>Description Application</value>
+    <comment>/Product/Category</comment>
   </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
@@ -149,9 +157,17 @@
     <value>Login</value>
     <comment>_Layouts</comment>
   </data>
+  <data name="New | Available" xml:space="preserve">
+    <value>New | Available</value>
+    <comment>/Product/Category</comment>
+  </data>
   <data name="productUrl" xml:space="preserve">
     <value>products</value>
     <comment>/Home/Index</comment>
+  </data>
+  <data name="Sort By" xml:space="preserve">
+    <value>Sort By</value>
+    <comment>/Product/Category</comment>
   </data>
   <data name="Specials Offer" xml:space="preserve">
     <value>Specials Offer</value>
@@ -160,5 +176,13 @@
   <data name="Vietnamese" xml:space="preserve">
     <value>Vietnamese</value>
     <comment>_Layouts</comment>
+  </data>
+  <data name="VIEW" xml:space="preserve">
+    <value>VIEW</value>
+    <comment>/Home/Index</comment>
+  </data>
+  <data name="View Details" xml:space="preserve">
+    <value>View Details</value>
+    <comment>/Product/Category</comment>
   </data>
 </root>
