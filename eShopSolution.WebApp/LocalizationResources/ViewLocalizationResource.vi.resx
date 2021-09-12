@@ -161,6 +161,10 @@
     <value>Đăng nhập</value>
     <comment>_Layouts</comment>
   </data>
+  <data name="Logout" xml:space="preserve">
+    <value>Đăng xuất</value>
+    <comment>_Layouts</comment>
+  </data>
   <data name="New | Available" xml:space="preserve">
     <value>Mới | Có sẵn</value>
     <comment>/Home/Index</comment>
