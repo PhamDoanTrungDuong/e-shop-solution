@@ -1,6 +1,8 @@
 using eShopSolution.ApiIntegration;
 using eShopSolution.Application.Utilities.Slides;
+using eShopSolution.ViewModels.System.Users;
 using eShopSolution.WebApp.LocalizationResources;
+using FluentValidation.AspNetCore;
 using LazZiya.ExpressLocalization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -35,7 +37,7 @@ namespace eShopSolution.WebApp
             };
 
             services.AddControllersWithViews()
-                //.AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<LoginRequestValidator>())
+                .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<RegisterRequestValidator>())
                 .AddExpressLocalization<ExpressLocalizationResource, ViewLocalizationResource>(ops =>
                 {
                     // When using all the culture providers, the localization process will
